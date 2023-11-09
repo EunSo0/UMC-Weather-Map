@@ -2,8 +2,6 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import axios from "axios";
 
-const API_KEY = "d2aa1f298d1fe24aabec7015efa1e873";
-
 export default function App() {
   const [location, setLocation] = useState("");
   const [name, setName] = useState("");
@@ -17,7 +15,7 @@ export default function App() {
   const searchWeather = async () => {
     try {
       const response = await axios.get(
-        `https://api.openweathermap.org/data/2.5/weather?q=${location}&appid=${API_KEY}`
+        `https://api.openweathermap.org/data/2.5/weather?q=${location}&appid=${process.env.REACT_APP_API_KEY}`
       );
       setName(response.data.name);
       setTemp(Math.round((response.data.main.temp - 273.15) * 10) / 10);
